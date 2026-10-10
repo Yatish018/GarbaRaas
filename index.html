@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garba Raas Night 2026 | Deep Sick Paradise, Jaipur</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --bg1:#0e0119; --bg2:#26073a; --bg3:#4a0e4e;
+  --saffron:#ff9933; --gold:#ffd34e; --magenta:#ff2e93; --teal:#14e0c8; --violet:#8b5cf6; --green:#25d366;
+  --card:rgba(255,255,255,.07); --line:rgba(255,211,78,.28); --text:#fff4e6; --muted:#d9c3e8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{font-family:'Segoe UI','Noto Sans Devanagari',Tahoma,sans-serif;color:var(--text);
+  background:radial-gradient(circle at 15% 10%,var(--bg3),transparent 45%),radial-gradient(circle at 85% 35%,#6a1a78,transparent 42%),linear-gradient(160deg,var(--bg1),var(--bg2));
+  background-attachment:fixed;min-height:100vh;overflow-x:hidden;line-height:1.6}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:0}
+#cf{position:fixed;inset:0;pointer-events:none;z-index:300}
+section,header,footer{position:relative;z-index:1}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* ticker */
+.ticker{position:fixed;top:0;left:0;right:0;height:30px;z-index:60;background:linear-gradient(90deg,var(--magenta),var(--saffron),var(--violet),var(--magenta));background-size:300% 100%;animation:flow 8s linear infinite;overflow:hidden;font-size:.8rem;font-weight:700;color:#1a0630;display:flex;align-items:center}
+.ticker div{white-space:nowrap;animation:mq 28s linear infinite;padding-left:100%}
+@keyframes mq{to{transform:translateX(-100%)}}
+
+/* NAV */
+nav{position:fixed;top:30px;left:0;right:0;z-index:50;background:rgba(14,1,25,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:900;font-size:1.2rem;background:linear-gradient(90deg,var(--gold),var(--saffron),var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;display:flex;gap:8px;align-items:center}
+.logo i{font-style:normal;animation:flick 1.6s infinite}
+@keyframes flick{50%{filter:drop-shadow(0 0 10px var(--gold));transform:scale(1.2) rotate(8deg)}}
+.menu{display:flex;gap:4px;align-items:center;list-style:none}
+.menu a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:30px;font-size:.92rem;transition:.25s}
+.menu a:hover{background:rgba(255,211,78,.15);color:var(--gold)}
+.lang{display:flex;border:1px solid var(--gold);border-radius:30px;overflow:hidden;margin-left:8px}
+.lang button{background:transparent;color:var(--gold);border:0;padding:6px 14px;cursor:pointer;font-weight:700;font-size:.85rem}
+.lang button.on{background:linear-gradient(90deg,var(--gold),var(--saffron));color:#2b0a3d}
+.burger{display:none;background:none;border:1px solid var(--gold);border-radius:12px;width:44px;height:44px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.burger span{width:22px;height:2px;background:var(--gold);transition:.3s;border-radius:2px}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;text-align:center;padding:150px 0 70px;overflow:hidden}
+#mandala{position:absolute;left:50%;top:50%;width:min(900px,160vw);height:min(900px,160vw);margin:calc(min(900px,160vw)/-2) 0 0 calc(min(900px,160vw)/-2);opacity:.28;animation:spin 70s linear infinite;pointer-events:none;filter:drop-shadow(0 0 8px rgba(255,46,147,.6))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .wrap{position:relative}
+.badge{display:inline-block;padding:7px 20px;border:1px solid var(--gold);border-radius:30px;color:var(--gold);font-size:.9rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;background:rgba(255,211,78,.08);animation:glowb 2.4s infinite}
+@keyframes glowb{50%{box-shadow:0 0 28px rgba(255,211,78,.6)}}
+.hero h1{font-size:clamp(2.6rem,8vw,6rem);line-height:1.05;font-weight:900;
+  background:linear-gradient(90deg,var(--gold),var(--saffron),var(--magenta),var(--teal),var(--gold));background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 6s linear infinite;
+  filter:drop-shadow(0 0 24px rgba(255,153,51,.55))}
+@keyframes flow{to{background-position:300% 0}}
+.hero .year{display:block;font-size:.55em;letter-spacing:10px;color:var(--teal);-webkit-text-fill-color:var(--teal);text-shadow:0 0 25px var(--teal);animation:neon 2.2s infinite}
+@keyframes neon{0%,18%,22%,60%,100%{opacity:1}20%,62%{opacity:.4}}
+.hero p.sub{font-size:clamp(1.05rem,2.4vw,1.4rem);color:var(--muted);margin:20px auto 28px;max-width:680px}
+.dancers{font-size:2.4rem;margin-bottom:8px;display:flex;gap:14px;justify-content:center}
+.dancers span{display:inline-block;animation:dance 1.2s ease-in-out infinite}
+.dancers span:nth-child(2){animation-delay:.2s}.dancers span:nth-child(3){animation-delay:.4s}.dancers span:nth-child(4){animation-delay:.6s}.dancers span:nth-child(5){animation-delay:.8s}
+@keyframes dance{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-18px) rotate(12deg)}}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:26px}
+.chip{background:var(--card);border:1px solid var(--line);padding:10px 18px;border-radius:40px;font-size:.95rem;backdrop-filter:blur(6px)}
+.count{display:flex;gap:14px;justify-content:center;margin:22px 0 32px;flex-wrap:wrap}
+.count div{min-width:84px;padding:14px 10px;border-radius:18px;background:linear-gradient(160deg,rgba(255,46,147,.28),rgba(139,92,246,.22));border:1px solid var(--line);box-shadow:0 0 28px rgba(255,46,147,.28)}
+.count b{display:block;font-size:2rem;color:var(--gold)}
+.count small{color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-size:.7rem}
+.btn{display:inline-block;border:0;cursor:pointer;padding:15px 38px;border-radius:50px;font-size:1.05rem;font-weight:800;color:#2b0a3d;text-decoration:none;font-family:inherit;
+  background:linear-gradient(90deg,var(--gold),var(--saffron));box-shadow:0 0 26px rgba(255,153,51,.55);transition:.3s;animation:pulse 2.4s infinite;text-align:center}
+.btn:hover{transform:translateY(-3px) scale(1.04)}
+.btn.alt{background:transparent;color:var(--gold);border:2px solid var(--gold);box-shadow:none;animation:none}
+.btn.wa{background:var(--green);color:#052b13;box-shadow:0 0 22px rgba(37,211,102,.5);animation:none}
+.btn.red{background:linear-gradient(90deg,#ff4d6d,#ff2e93);color:#fff;animation:none}
+.btn.sm{padding:10px 22px;font-size:.92rem}
+@keyframes pulse{50%{box-shadow:0 0 46px rgba(255,46,147,.75)}}
+
+/* SECTIONS */
+.sec{padding:90px 0}
+.sec h2{text-align:center;font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:10px;color:var(--gold);text-shadow:0 0 22px rgba(255,211,78,.5)}
+.sec .lead{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 46px}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;backdrop-filter:blur(8px);transition:.35s}
+.card:hover{box-shadow:0 18px 50px rgba(255,46,147,.28);border-color:var(--magenta)}
+.card .ic{font-size:2.4rem;margin-bottom:10px;display:inline-block;transition:.4s}
+.card:hover .ic{transform:scale(1.3) rotate(12deg)}
+.card h3{color:var(--gold);margin-bottom:6px}
+.card p{color:var(--muted);font-size:.97rem}
+.rv{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* TICKET PRICE CARDS */
+.tix{position:relative;text-align:center;overflow:hidden;transform-style:preserve-3d;will-change:transform}
+.tix.hot{border:2px solid var(--magenta);box-shadow:0 0 36px rgba(255,46,147,.4)}
+.tix .ribbon{position:absolute;top:16px;right:-34px;transform:rotate(40deg);background:var(--magenta);padding:4px 40px;font-size:.72rem;font-weight:800;letter-spacing:1px}
+.tix .price{font-size:3rem;font-weight:900;background:linear-gradient(90deg,var(--gold),var(--saffron));-webkit-background-clip:text;background-clip:text;color:transparent;margin:6px 0}
+.tix ul{list-style:none;margin:14px 0 22px;color:var(--muted);text-align:left;display:inline-block}
+.tix li::before{content:"✦ ";color:var(--teal)}
+.tix::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);animation:shine 4s infinite}
+@keyframes shine{60%,100%{left:160%}}
+
+/* SCHEDULE */
+.tl{max-width:760px;margin:auto;border-left:3px solid var(--magenta);padding-left:26px}
+.tl .it{position:relative;margin-bottom:26px;background:var(--card);padding:16px 20px;border-radius:16px;border:1px solid var(--line)}
+.tl .it::before{content:"";position:absolute;left:-37px;top:22px;width:18px;height:18px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+.tl b{color:var(--teal)}
+
+/* VERIFY + ADMIN */
+.verify{max-width:560px;margin:auto;text-align:center}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+input,select{width:100%;padding:13px 15px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-family:inherit}
+input:focus,select:focus{outline:0;border-color:var(--gold);box-shadow:0 0 14px rgba(255,211,78,.4)}
+select option{color:#222}
+input::placeholder{color:#b9a3cc}
+.vres{margin-top:18px;padding:18px;border-radius:16px;display:none;text-align:left}
+.vres.ok{display:block;background:rgba(20,224,200,.12);border:1px solid var(--teal)}
+.vres.bad{display:block;background:rgba(255,46,147,.14);border:1px solid var(--magenta)}
+.vres.used{display:block;background:rgba(255,153,51,.15);border:1px solid var(--saffron)}
+.admin{max-width:900px;margin:auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:20px 0}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.stats b{display:block;font-size:1.6rem;color:var(--gold)}
+.bk{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px}
+.bk .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.bk small{color:var(--muted)}
+.st{padding:3px 12px;border-radius:20px;font-size:.78rem;font-weight:800}
+.st.pending{background:rgba(255,153,51,.25);color:#ffbe73}
+.st.paid{background:rgba(20,224,200,.22);color:var(--teal)}
+.st.rejected{background:rgba(255,46,147,.25);color:#ff8fb8}
+.bk .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* CONTACT / FOOTER */
+.contact{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+footer{text-align:center;padding:34px 20px;border-top:1px solid var(--line);color:var(--muted);background:rgba(0,0,0,.25)}
+
+/* floating buttons */
+.fab{position:fixed;z-index:70;width:56px;height:56px;border-radius:50%;border:0;display:flex;align-items:center;justify-content:center;font-size:1.7rem;cursor:pointer;text-decoration:none;box-shadow:0 8px 26px rgba(0,0,0,.45)}
+#waFab{right:18px;bottom:18px;background:var(--green);animation:bob 2s infinite}
+#beatFab{left:18px;bottom:18px;background:linear-gradient(135deg,var(--magenta),var(--violet))}
+#beatFab.on{animation:bob .43s infinite}
+@keyframes bob{50%{transform:translateY(-8px) scale(1.08)}}
+
+/* MODAL */
+.ov{position:fixed;inset:0;z-index:100;background:rgba(10,0,20,.85);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:30px 14px}
+.ov.on{display:flex}
+.modal{position:relative;width:100%;max-width:580px;background:linear-gradient(160deg,#2b0a3d,#1a0630);border:1px solid var(--gold);border-radius:26px;padding:30px 26px;box-shadow:0 0 70px rgba(255,46,147,.4);animation:pop .4s ease}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.x{position:absolute;top:14px;right:16px;background:none;border:0;color:var(--gold);font-size:1.7rem;cursor:pointer}
+.modal h3{color:var(--gold);text-align:center;margin-bottom:6px;font-size:1.5rem}
+.steps{display:flex;gap:6px;margin:14px 0 22px}
+.steps i{flex:1;height:5px;border-radius:5px;background:rgba(255,255,255,.15)}
+.steps i.on{background:linear-gradient(90deg,var(--gold),var(--magenta))}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.88rem;color:var(--muted);margin-bottom:5px}
+.qty{display:flex;align-items:center;gap:14px}
+.qty button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);background:none;color:var(--gold);font-size:1.4rem;cursor:pointer}
+.qty b{font-size:1.4rem;min-width:30px;text-align:center}
+.sum{background:rgba(255,211,78,.08);border:1px dashed var(--gold);border-radius:16px;padding:14px 18px;margin:16px 0}
+.sum div{display:flex;justify-content:space-between;padding:3px 0}
+.sum .tot{font-size:1.25rem;font-weight:800;color:var(--gold)}
+.payBox{text-align:center;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}
+.payBox .amt{font-size:2.4rem;font-weight:900;color:var(--gold)}
+#upiQr{display:inline-block;background:#fff;padding:10px;border-radius:14px;margin:12px 0}
+.copyrow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:6px 0;font-size:.95rem}
+.copyrow code{background:rgba(0,0,0,.35);padding:4px 10px;border-radius:8px;color:var(--teal)}
+.copyrow button{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:8px;padding:3px 10px;cursor:pointer}
+.warn{background:rgba(255,153,51,.15);border:1px solid var(--saffron);color:#ffd9a8;border-radius:12px;padding:10px 14px;font-size:.85rem;margin:10px 0}
+.err{color:#ff8fb8;font-size:.88rem;min-height:20px;margin-bottom:6px}
+.note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:10px}
+
+/* TICKET CARD */
+.tk{display:flex;background:linear-gradient(135deg,#fff7e8,#ffe3b8);color:#2b0a3d;border-radius:20px;overflow:hidden;margin:16px 0;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.tk::before,.tk::after{content:"";position:absolute;left:62%;width:26px;height:26px;border-radius:50%;background:#1a0630}
+.tk::before{top:-13px}.tk::after{bottom:-13px}
+.tk .l{flex:1.6;padding:18px;border-right:2px dashed #b46a1b}
+.tk .r{flex:1;padding:14px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:rgba(255,153,51,.18)}
+.tk h4{font-size:1.05rem;color:#a2005c}
+.tk .tid{font-family:monospace;font-weight:800;font-size:.95rem;background:#2b0a3d;color:var(--gold);display:inline-block;padding:3px 10px;border-radius:8px;margin:6px 0}
+.tk p{font-size:.8rem;line-height:1.55}
+.tk .r small{font-size:.65rem;text-align:center}
+.tk .bdg{display:inline-block;font-size:.7rem;font-weight:800;padding:2px 10px;border-radius:20px;margin-top:3px}
+.bdg.pending{background:#ff9933;color:#2b0a3d}.bdg.paid{background:#0f9d7a;color:#fff}.bdg.rejected{background:#c2185b;color:#fff}
+.okbig{font-size:3.4rem;text-align:center}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(140px);background:var(--teal);color:#08332e;padding:12px 24px;border-radius:40px;font-weight:700;z-index:400;transition:.4s}
+#toast.on{transform:translateX(-50%) translateY(0)}
+.fl{position:fixed;bottom:-60px;z-index:0;font-size:2rem;opacity:.5;animation:up linear forwards;pointer-events:none}
+@keyframes up{to{transform:translateY(-115vh) rotate(360deg)}}
+
+@media(max-width:900px){
+  .burger{display:flex}
+  .menu{position:fixed;top:94px;left:0;right:0;flex-direction:column;background:rgba(14,1,25,.97);padding:16px;gap:4px;border-bottom:1px solid var(--line);transform:translateY(-140%);transition:.4s;z-index:-1}
+  .menu.open{transform:none}
+  .menu a{display:block;width:100%;text-align:center;padding:12px}
+  .lang{margin:8px auto 0}
+  .tk{flex-direction:column}.tk .l{border-right:0;border-bottom:2px dashed #b46a1b}.tk::before,.tk::after{display:none}
+}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas><canvas id="cf"></canvas>
+
+<div class="ticker"><div data-t="ticker"></div></div>
+
+<nav>
+ <div class="wrap nav-in">
+  <a href="#home" class="logo"><i>🪔</i> <span data-t="brand"></span></a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="menu" id="menu">
+   <li><a href="#home" data-t="nHome"></a></li>
+   <li><a href="#about" data-t="nAbout"></a></li>
+   <li><a href="#tickets" data-t="nTickets"></a></li>
+   <li><a href="#schedule" data-t="nSched"></a></li>
+   <li><a href="#verify" data-t="nVerify"></a></li>
+   <li><a href="#contact" data-t="nContact"></a></li>
+   <li><a href="#admin" data-t="nAdmin"></a></li>
+   <li class="lang"><button id="bEn" class="on">EN</button><button id="bHi">हिं</button></li>
+  </ul>
+ </div>
+</nav>
+
+<header class="hero" id="home">
+ <svg id="mandala" viewBox="0 0 600 600"></svg>
+ <div class="wrap">
+  <div class="dancers"><span>🪘</span><span>💃</span><span>🪔</span><span>🕺</span><span>✨</span></div>
+  <span class="badge" data-t="badge"></span>
+  <h1><span data-t="title"></span><span class="year">2026</span></h1>
+  <p class="sub" data-t="sub"></p>
+  <div class="chips">
+   <span class="chip">📍 <span data-t="venueShort"></span></span>
+   <span class="chip">📅 <span data-t="dateTxt"></span></span>
+   <span class="chip">📞 <span id="phoneChip"></span></span>
+  </div>
+  <div class="count" id="count"></div>
+  <a href="#tickets" class="btn" data-t="cta"></a>
+ </div>
+</header>
+
+<section class="sec" id="about">
+ <div class="wrap">
+  <h2 data-t="aboutH"></h2>
+  <p class="lead" data-t="aboutP"></p>
+  <div class="grid">
+   <div class="card rv"><div class="ic">🥁</div><h3 data-t="f1h"></h3><p data-t="f1p"></p></div>
+   <div class="card rv"><div class="ic">💃</div><h3 data-t="f2h"></h3><p data-t="f2p"></p></div>
+   <div class="card rv"><div class="ic">🍛</div><h3 data-t="f3h"></h3><p data-t="f3p"></p></div>
+   <div class="card rv"><div class="ic">🏆</div><h3 data-t="f4h"></h3><p data-t="f4p"></p></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="tickets">
+ <div class="wrap">
+  <h2 data-t="tixH"></h2>
+  <p class="lead" data-t="tixP"></p>
+  <div class="grid">
+   <div class="card tix hot rv">
+    <div class="ribbon" data-t="best"></div>
+    <div class="ic">👫</div><h3 data-t="couples"></h3>
+    <div class="price">₹500</div>
+    <ul><li data-t="cp1"></li><li data-t="cp2"></li><li data-t="cp3"></li></ul><br>
+    <button class="btn sm" onclick="openBook('couples')" data-t="book"></button>
+   </div>
+   <div class="card tix rv">
+    <div class="ic">🕺</div><h3 data-t="singles"></h3>
+    <div class="price">₹300</div>
+    <ul><li data-t="sp1"></li><li data-t="sp2"></li><li data-t="sp3"></li></ul><br>
+    <button class="btn sm" onclick="openBook('singles')" data-t="book"></button>
+   </div>
+   <div class="card tix rv">
+    <div class="ic">🧒</div><h3 data-t="kids"></h3>
+    <div class="price">₹200</div>
+    <ul><li data-t="kp1"></li><li data-t="kp2"></li><li data-t="kp3"></li></ul><br>
+    <button class="btn sm" onclick="openBook('kids')" data-t="book"></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="schedule">
+ <div class="wrap">
+  <h2 data-t="schH"></h2>
+  <p class="lead" data-t="schP"></p>
+  <div class="tl">
+   <div class="it rv"><b>6:00 PM</b> — <span data-t="s1"></span></div>
+   <div class="it rv"><b>7:00 PM</b> — <span data-t="s2"></span></div>
+   <div class="it rv"><b>8:00 PM</b> — <span data-t="s3"></span></div>
+   <div class="it rv"><b>9:30 PM</b> — <span data-t="s4"></span></div>
+   <div class="it rv"><b>10:30 PM</b> — <span data-t="s5"></span></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="verify">
+ <div class="wrap verify">
+  <h2 data-t="verH"></h2>
+  <p class="lead" data-t="verP"></p>
+  <div class="row">
+   <input id="vid" placeholder="GRB26-XXXXXXXX" style="max-width:340px;text-transform:uppercase">
+   <button class="btn sm" id="vbtn" data-t="verBtn"></button>
+  </div>
+  <div class="vres" id="vres"></div>
+ </div>
+</section>
+
+<section class="sec" id="admin">
+ <div class="wrap admin">
+  <h2 data-t="admH"></h2>
+  <p class="lead" data-t="admP"></p>
+  <div id="pinBox" class="row">
+   <input id="pin" type="password" placeholder="PIN" style="max-width:200px" inputmode="numeric">
+   <button class="btn sm" id="pinBtn" data-t="admIn"></button>
+  </div>
+  <div class="err" id="pinErr" style="text-align:center"></div>
+  <div id="admPanel" style="display:none">
+   <div class="row"><button class="btn alt sm" id="refBtn" data-t="refresh"></button></div>
+   <div class="stats" id="stats"></div>
+   <div id="bkList"></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="contact">
+ <div class="wrap">
+  <h2 data-t="conH"></h2>
+  <p class="lead" data-t="conP"></p>
+  <div class="contact">
+   <div class="card rv"><div class="ic">📍</div><h3 data-t="venueH"></h3><p data-t="venueFull"></p><br>
+    <a class="btn alt sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Deep+Sick+Paradise+Mansarovar+Jaipur" data-t="mapBtn"></a></div>
+   <div class="card rv"><div class="ic">📞</div><h3 data-t="callH"></h3><p id="phoneCard"></p><br>
+    <a class="btn alt sm" id="callBtn" data-t="callBtn"></a></div>
+   <div class="card rv"><div class="ic">💬</div><h3>WhatsApp</h3><p data-t="waP"></p><br>
+    <a class="btn wa sm" id="waBtn" target="_blank" rel="noopener" data-t="waBtn"></a></div>
+  </div>
+ </div>
+</section>
+
+<footer><span data-t="foot"></span></footer>
+
+<a id="waFab" class="fab" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<button id="beatFab" class="fab" aria-label="Dhol">🥁</button>
+
+<!-- BOOKING MODAL -->
+<div class="ov" id="ov">
+ <div class="modal">
+  <button class="x" onclick="closeBook()">×</button>
+  <h3 id="mTitle"></h3>
+  <div class="steps" id="steps"><i></i><i></i><i></i></div>
+
+  <div id="st1">
+   <div class="fg"><label data-t="lName"></label><input id="fName" autocomplete="name"></div>
+   <div class="fg"><label data-t="lWa"></label><input id="fPhone" inputmode="numeric" maxlength="10" placeholder="9XXXXXXXXX"></div>
+   <div class="fg"><label data-t="lEmail"></label><input id="fEmail" type="email" placeholder="you@example.com"></div>
+   <div class="fg"><label data-t="lQty"></label>
+    <div class="qty"><button type="button" id="qm">−</button><b id="qv">1</b><button type="button" id="qp">+</button></div></div>
+   <div class="sum">
+    <div><span id="sType"></span><span id="sPer"></span></div>
+    <div class="tot"><span data-t="total"></span><span id="sTot"></span></div>
+   </div>
+   <div class="err" id="e1"></div>
+   <button class="btn" style="width:100%" id="to2" data-t="toPay"></button>
+  </div>
+
+  <div id="st2" style="display:none">
+   <div class="payBox">
+    <small data-t="payExact"></small>
+    <div class="amt" id="pAmt"></div>
+    <div id="upiArea">
+     <div id="upiQr"></div><br>
+     <a class="btn sm" id="upiBtn" data-t="payApp"></a>
+     <div class="copyrow"><span>UPI ID:</span><code id="upiTxt"></code><button type="button" data-copy="upiTxt">Copy</button></div>
+    </div>
+    <div class="copyrow"><span data-t="payTo"></span><code id="phTxt"></code><button type="button" data-copy="phTxt">Copy</button></div>
+    <div class="copyrow"><span data-t="payName"></span><code id="nmTxt"></code></div>
+   </div>
+   <div class="warn" id="noUpi" style="display:none" data-t="noUpi"></div>
+   <div class="fg"><label data-t="lUtr"></label><input id="fUtr" placeholder="e.g. 412345678901" maxlength="25"></div>
+   <div class="err" id="e2"></div>
+   <button class="btn" style="width:100%" id="payDone" data-t="paidBtn"></button>
+   <button class="btn alt sm" style="width:100%;margin-top:10px" id="back1" data-t="back"></button>
+   <p class="note" data-t="verifyNote"></p>
+  </div>
+
+  <div id="st3" style="display:none">
+   <div class="okbig">🎉</div>
+   <h3 data-t="okH"></h3>
+   <div class="warn" data-t="pendNote"></div>
+   <div id="tkList"></div>
+   <div class="err" id="mailMsg" style="color:var(--teal);text-align:center"></div>
+   <div class="btnrow">
+    <a class="btn wa sm" id="waProof" target="_blank" rel="noopener" data-t="sendProof"></a>
+    <button class="btn sm" id="dlAll" data-t="dl"></button>
+    <a class="btn alt sm" id="waSelf" target="_blank" rel="noopener" data-t="saveWa"></a>
+    <button class="btn alt sm" id="mailBtn" data-t="mailBtn"></button>
+   </div>
+   <p class="note" data-t="carry"></p>
+  </div>
+ </div>
+</div>
+<div id="toast"></div>
+
+<script>
+/* ================= CONFIG — EDIT THESE ================= */
+const CONFIG = {
+  eventName : 'Garba Raas Night 2026',
+  eventDate : '2026-10-11T18:00:00+05:30',     // change to your real date
+  venue     : 'Deep Sick Paradise, Mansarovar, Jaipur',
+  ownerName : 'Garba Raas Night',               // name shown on UPI payment
+  ownerPhone: '917023013549',                   // WhatsApp/phone with country code. NOTE: Indian mobiles start with 6-9, please double-check this number
+  upiId     : '7023013549@ptaxis',                               // PUT YOUR REAL UPI ID HERE, e.g. 'yourname@oksbi'. Copy it from PhonePe/GPay/Paytm
+  adminPin  : '2026',                           // change this! (client-side PIN is only basic protection)
+  emailjs   : { serviceId:'', templateId:'', publicKey:'' },
+  maxQty    : 10
+};
+const TYPES={couples:{price:500,icon:'👫',persons:2},singles:{price:300,icon:'🕺',persons:1},kids:{price:200,icon:'🧒',persons:1}};
+const DISPLAY_PHONE='+'+CONFIG.ownerPhone.slice(0,2)+' '+CONFIG.ownerPhone.slice(2);
+
+/* ================= LANGUAGES ================= */
+const L={
+en:{
+ ticker:'🔥 LIVE DHOL  •  💃 NON-STOP DANDIYA  •  🪔 NAVRATRI 2026  •  🎁 PRIZES EVERY NIGHT  •  🍛 FOOD STALLS  •  📍 DEEP SICK PARADISE, MANSAROVAR, JAIPUR  •  🎟️ BOOK NOW  •  ',
+ brand:'Garba Raas 2026', nHome:'Home',nAbout:'About',nTickets:'Tickets',nSched:'Schedule',nVerify:'Verify Ticket',nContact:'Contact',nAdmin:'Organizer',
+ badge:'Navratri Special Mega Event', title:'GARBA RAAS NIGHT',
+ sub:'Nine nights of colour, dhol beats and dandiya magic. Dance with Jaipur under a sky of lights!',
+ venueShort:'Deep Sick Paradise, Mansarovar', dateTxt:'Navratri 2026 · 6 PM onwards', cta:'🎟️ Book Your Tickets',
+ d:'Days',h:'Hours',m:'Mins',s:'Secs', live:'🎶 The celebration is ON!',
+ aboutH:'Why You Cannot Miss It', aboutP:'Jaipur\u2019s most vibrant Navratri celebration, built for families, friends and couples.',
+ f1h:'Live Dhol & DJ',f1p:'Folk bands and a high-energy DJ keep the floor alive every night.',
+ f2h:'Dandiya & Garba',f2p:'Huge dance floor with trained leaders to guide beginners.',
+ f3h:'Food & Fun',f3p:'Gujarati and Rajasthani street food, kids zone and selfie booths.',
+ f4h:'Prizes',f4p:'Best dressed, best dancer and best couple awards.',
+ tixH:'Choose Your Pass', tixP:'Pay by UPI and get your unique QR ticket instantly. One ticket = one entry.',
+ couples:'Couples',singles:'Singles',kids:'Kids',best:'POPULAR', book:'Book Now',
+ cp1:'Entry for 2 persons',cp2:'Unique QR pass',cp3:'Couple contest entry',
+ sp1:'Entry for 1 person',sp2:'Unique QR pass',sp3:'Dance floor access',
+ kp1:'Entry for 1 child',kp2:'Unique QR pass',kp3:'Kids zone access',
+ schH:'Evening Schedule', schP:'Reach early to enjoy every moment.',
+ s1:'Gates open, welcome drinks',s2:'Aarti and Garba warm-up',s3:'Live folk band & Raas',s4:'DJ Dandiya Night',s5:'Prize ceremony & finale',
+ verH:'Verify Ticket', verP:'Enter the Ticket ID to check its status at the gate.', verBtn:'Verify',
+ vOk:'✅ VALID — payment verified', vPend:'⏳ Payment not verified yet', vUsed:'⚠️ Already used for entry', vRej:'❌ Payment rejected',
+ vBad:'❌ Ticket not found. Check the ID or contact the organizer.', vMark:'Mark as entered (gate staff)',
+ admH:'Organizer Panel', admP:'Verify UTR payments in your bank/UPI app, then approve and send tickets on WhatsApp.', admIn:'Open',
+ pinBad:'Wrong PIN.', refresh:'⟳ Refresh', stT:'Total tickets', stP:'Pending', stV:'Verified', stR:'Verified revenue', noBk:'No bookings yet.',
+ vfy:'✔ Verify payment', rej:'✖ Reject', waCust:'💬 WhatsApp ticket to customer', utr:'UTR',
+ conH:'Contact & Venue', conP:'We are happy to help with bookings and group enquiries.',
+ venueH:'Venue', venueFull:'Deep Sick Paradise, Mansarovar, Jaipur, Rajasthan', mapBtn:'Open in Maps', callH:'Call Us', callBtn:'Call Now', waP:'Chat with the organizer directly.', waBtn:'Open WhatsApp',
+ foot:'© 2026 Garba Raas Night · Deep Sick Paradise, Jaipur',
+ mTitle:'Book', lName:'Full Name',lWa:'Your WhatsApp Number',lEmail:'Email (optional)',lQty:'Number of Tickets',total:'Total',toPay:'Continue to Payment →',
+ payExact:'Pay exactly', payApp:'📱 Pay with UPI app', payTo:'Pay to number:', payName:'Name:', back:'← Back',
+ noUpi:'Open PhonePe / Google Pay / Paytm → Pay to mobile number → enter the number above and the exact amount.',
+ lUtr:'UTR / Transaction ID (after paying)', paidBtn:'✅ I have paid — Generate my ticket',
+ verifyNote:'Your ticket becomes VALID after the organizer verifies your payment.',
+ okH:'Ticket Generated!', pendNote:'⏳ Status: PAYMENT PENDING VERIFICATION. Tap "Send to organizer" so your payment is confirmed. You will receive the final confirmed ticket on WhatsApp.',
+ sendProof:'📲 Send to organizer (WhatsApp)', dl:'⬇ Download', saveWa:'💬 Save on my WhatsApp', mailBtn:'✉ Email',
+ carry:'Show the QR / Ticket ID and a valid photo ID at the gate. Each ticket works once.',
+ eName:'Please enter your name.', eEmail:'Email looks invalid.', ePhone:'Enter a valid 10-digit WhatsApp number.', eUtr:'Enter the UTR / transaction ID from your payment app.', eDup:'This UTR is already used for another booking.',
+ mailSent:'✅ Email sent to ', mailOpen:'Your email app opened. Press Send.', 
+ admit:'ADMIT', passFor:'Pass', paid:'PAID', pending:'PENDING', rejected:'REJECTED', name:'Name', ven:'Venue', dt:'Date', ph:'Mobile', persons:'Persons'
+},
+hi:{
+ ticker:'🔥 लाइव ढोल  •  💃 नॉन-स्टॉप डांडिया  •  🪔 नवरात्रि 2026  •  🎁 हर रात इनाम  •  🍛 फूड स्टॉल  •  📍 दीप सिक पैराडाइज़, मानसरोवर, जयपुर  •  🎟️ अभी बुक करें  •  ',
+ brand:'गरबा रास 2026', nHome:'होम',nAbout:'परिचय',nTickets:'टिकट',nSched:'कार्यक्रम',nVerify:'टिकट जाँचें',nContact:'संपर्क',nAdmin:'आयोजक',
+ badge:'नवरात्रि विशेष महा-आयोजन', title:'गरबा रास नाइट',
+ sub:'रंगों, ढोल की थाप और डांडिया का नौ रातों का जादू। जयपुर के साथ रोशनी भरे आसमान तले झूमिए!',
+ venueShort:'दीप सिक पैराडाइज़, मानसरोवर', dateTxt:'नवरात्रि 2026 · शाम 6 बजे से', cta:'🎟️ टिकट बुक करें',
+ d:'दिन',h:'घंटे',m:'मिनट',s:'सेकंड', live:'🎶 उत्सव शुरू हो चुका है!',
+ aboutH:'क्यों न चूकें यह रात', aboutP:'जयपुर का सबसे रंगीन नवरात्रि उत्सव, परिवार, दोस्तों और जोड़ों के लिए।',
+ f1h:'लाइव ढोल और DJ',f1p:'लोक बैंड और जोशीला DJ हर रात फ्लोर को जीवंत रखते हैं।',
+ f2h:'डांडिया और गरबा',f2p:'विशाल डांस फ्लोर, नए लोगों को सिखाने के लिए प्रशिक्षित गाइड।',
+ f3h:'खान-पान और मस्ती',f3p:'गुजराती-राजस्थानी स्ट्रीट फूड, किड्स ज़ोन और सेल्फी बूथ।',
+ f4h:'इनाम',f4p:'बेस्ट ड्रेस, बेस्ट डांसर और बेस्ट कपल पुरस्कार।',
+ tixH:'अपना पास चुनें', tixP:'UPI से भुगतान करें और तुरंत अनोखा QR टिकट पाएं। एक टिकट = एक प्रवेश।',
+ couples:'जोड़ा (कपल)',singles:'सिंगल',kids:'बच्चे',best:'लोकप्रिय', book:'अभी बुक करें',
+ cp1:'2 व्यक्तियों का प्रवेश',cp2:'अनोखा QR पास',cp3:'कपल प्रतियोगिता में भाग',
+ sp1:'1 व्यक्ति का प्रवेश',sp2:'अनोखा QR पास',sp3:'डांस फ्लोर प्रवेश',
+ kp1:'1 बच्चे का प्रवेश',kp2:'अनोखा QR पास',kp3:'किड्स ज़ोन प्रवेश',
+ schH:'शाम का कार्यक्रम', schP:'हर पल का आनंद लेने के लिए समय पर पहुंचें।',
+ s1:'गेट खुलेंगे, वेलकम ड्रिंक',s2:'आरती और गरबा वार्म-अप',s3:'लाइव लोक बैंड और रास',s4:'DJ डांडिया नाइट',s5:'पुरस्कार वितरण और समापन',
+ verH:'टिकट जाँचें', verP:'गेट पर स्थिति जाँचने के लिए टिकट आईडी डालें।', verBtn:'जाँचें',
+ vOk:'✅ मान्य — भुगतान सत्यापित', vPend:'⏳ भुगतान अभी सत्यापित नहीं हुआ', vUsed:'⚠️ यह टिकट पहले उपयोग हो चुका है', vRej:'❌ भुगतान अस्वीकृत',
+ vBad:'❌ टिकट नहीं मिला। आईडी जाँचें या आयोजक से संपर्क करें।', vMark:'प्रवेश दर्ज करें (गेट स्टाफ)',
+ admH:'आयोजक पैनल', admP:'अपने बैंक/UPI ऐप में UTR जाँचें, फिर स्वीकृत करें और WhatsApp पर टिकट भेजें।', admIn:'खोलें',
+ pinBad:'गलत PIN।', refresh:'⟳ रिफ्रेश', stT:'कुल टिकट', stP:'लंबित', stV:'सत्यापित', stR:'सत्यापित आय', noBk:'अभी कोई बुकिंग नहीं।',
+ vfy:'✔ भुगतान सत्यापित करें', rej:'✖ अस्वीकार', waCust:'💬 ग्राहक को WhatsApp पर टिकट भेजें', utr:'UTR',
+ conH:'संपर्क और स्थान', conP:'बुकिंग और ग्रुप पूछताछ के लिए हम उपलब्ध हैं।',
+ venueH:'स्थान', venueFull:'दीप सिक पैराडाइज़, मानसरोवर, जयपुर, राजस्थान', mapBtn:'मैप में खोलें', callH:'हमें कॉल करें', callBtn:'अभी कॉल करें', waP:'आयोजक से सीधे चैट करें।', waBtn:'WhatsApp खोलें',
+ foot:'© 2026 गरबा रास नाइट · दीप सिक पैराडाइज़, जयपुर',
+ mTitle:'बुक करें', lName:'पूरा नाम',lWa:'आपका WhatsApp नंबर',lEmail:'ईमेल (वैकल्पिक)',lQty:'टिकटों की संख्या',total:'कुल',toPay:'भुगतान के लिए आगे बढ़ें →',
+ payExact:'ठीक यह राशि भेजें', payApp:'📱 UPI ऐप से भुगतान करें', payTo:'इस नंबर पर भेजें:', payName:'नाम:', back:'← वापस',
+ noUpi:'PhonePe / Google Pay / Paytm खोलें → मोबाइल नंबर पर भेजें → ऊपर दिया नंबर और सही राशि डालें।',
+ lUtr:'UTR / ट्रांज़ैक्शन आईडी (भुगतान के बाद)', paidBtn:'✅ मैंने भुगतान कर दिया — टिकट बनाएं',
+ verifyNote:'आयोजक द्वारा भुगतान सत्यापित करने के बाद आपका टिकट मान्य होगा।',
+ okH:'टिकट तैयार!', pendNote:'⏳ स्थिति: भुगतान सत्यापन लंबित। "आयोजक को भेजें" दबाएं ताकि आपका भुगतान पुष्ट हो। अंतिम पुष्टि वाला टिकट WhatsApp पर मिलेगा।',
+ sendProof:'📲 आयोजक को भेजें (WhatsApp)', dl:'⬇ डाउनलोड', saveWa:'💬 मेरे WhatsApp पर सहेजें', mailBtn:'✉ ईमेल',
+ carry:'गेट पर QR / टिकट आईडी और वैध फोटो पहचान पत्र दिखाएं। हर टिकट एक बार मान्य है।',
+ eName:'कृपया अपना नाम लिखें।', eEmail:'ईमेल सही नहीं लगता।', ePhone:'सही 10 अंकों का WhatsApp नंबर लिखें।', eUtr:'पेमेंट ऐप से UTR / ट्रांज़ैक्शन आईडी लिखें।', eDup:'यह UTR पहले ही किसी बुकिंग में उपयोग हो चुका है।',
+ mailSent:'✅ ईमेल भेजा गया: ', mailOpen:'आपका ईमेल ऐप खुल गया है। Send दबाएं।',
+ admit:'प्रवेश', passFor:'पास', paid:'भुगतान हुआ', pending:'लंबित', rejected:'अस्वीकृत', name:'नाम', ven:'स्थान', dt:'तारीख', ph:'मोबाइल', persons:'व्यक्ति'
+}};
+let lang='en';
+const t=k=>(L[lang][k]??L.en[k]??k);
+const $=id=>document.getElementById(id);
+const money=n=>'₹'+Number(n).toLocaleString('en-IN');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));
+  $('bEn').classList.toggle('on',lang==='en');$('bHi').classList.toggle('on',lang==='hi');
+  renderCount();
+  if(cur.type) refreshBook();
+  if($('st3').style.display==='block') renderTickets();
+  if(adminOk) renderAdmin();
+  document.title=(lang==='en'?'Garba Raas Night 2026':'गरबा रास नाइट 2026')+' | Jaipur';
+}
+$('bEn').onclick=()=>{lang='en';applyLang()};
+$('bHi').onclick=()=>{lang='hi';applyLang()};
+
+/* static contact wiring */
+$('phoneChip').textContent=DISPLAY_PHONE;$('phoneCard').textContent=DISPLAY_PHONE;$('phTxt').textContent=DISPLAY_PHONE;$('nmTxt').textContent=CONFIG.ownerName;
+$('callBtn').href='tel:+'+CONFIG.ownerPhone;
+const waOwner=txt=>'https://wa.me/'+CONFIG.ownerPhone+(txt?'?text='+encodeURIComponent(txt):'');
+$('waBtn').href=waOwner('Hello! I have a question about Garba Raas Night 2026.');$('waFab').href=waOwner('Hello! I have a question about Garba Raas Night 2026.');
+
+/* menu */
+const burger=$('burger'),menu=$('menu');
+burger.onclick=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');menu.classList.remove('open')}));
+
+/* countdown */
+function renderCount(){
+  const diff=new Date(CONFIG.eventDate)-new Date(),c=$('count');
+  if(diff<=0){c.innerHTML='<div style="min-width:auto;padding:14px 30px"><b style="font-size:1.3rem">'+t('live')+'</b></div>';return}
+  const v=[Math.floor(diff/864e5),Math.floor(diff/36e5)%24,Math.floor(diff/6e4)%60,Math.floor(diff/1e3)%60];
+  c.innerHTML=['d','h','m','s'].map((k,i)=>`<div><b>${String(v[i]).padStart(2,'0')}</b><small>${t(k)}</small></div>`).join('');
+}
+setInterval(renderCount,1000);
+
+/* ================= VISUAL FX ================= */
+const COLS=['#ffd34e','#ff9933','#ff2e93','#14e0c8','#8b5cf6'];
+(function mandala(){
+  let h='';
+  for(let r=0;r<4;r++){const n=10+r*6,rad=60+r*55;
+    for(let i=0;i<n;i++)h+=`<ellipse cx="300" cy="${300-rad}" rx="${9+r*4}" ry="${28+r*8}" transform="rotate(${i*360/n} 300 300)" fill="none" stroke="${COLS[(i+r)%5]}" stroke-width="1.6"/>`;
+    h+=`<circle cx="300" cy="300" r="${rad+30}" fill="none" stroke="${COLS[r%5]}" stroke-dasharray="4 8" stroke-width="1.2"/>`}
+  $('mandala').innerHTML=h;
+})();
+(function particles(){
+  const cv=$('fx'),cx=cv.getContext('2d');let W,H,P=[],T=[];
+  const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};rs();addEventListener('resize',rs);
+  for(let i=0;i<80;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.6+.6,v:Math.random()*.55+.15,c:COLS[i%5],o:Math.random()*6});
+  addEventListener('pointermove',e=>{for(let i=0;i<2;i++)T.push({x:e.clientX,y:e.clientY,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2,l:1,c:COLS[Math.random()*5|0]})});
+  (function loop(){
+    cx.clearRect(0,0,W,H);
+    P.forEach(p=>{p.y-=p.v;p.o+=.03;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}
+      cx.globalAlpha=.3+.7*Math.abs(Math.sin(p.o));cx.fillStyle=p.c;cx.shadowColor=p.c;cx.shadowBlur=12;cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill()});
+    T=T.filter(p=>p.l>0);T.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.l-=.03;cx.globalAlpha=p.l;cx.fillStyle=p.c;cx.shadowColor=p.c;cx.shadowBlur=16;cx.beginPath();cx.arc(p.x,p.y,3*p.l+1,0,6.283);cx.fill()});
+    requestAnimationFrame(loop)})();
+})();
+function confetti(){
+  const cv=$('cf'),cx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
+  const P=[];for(let i=0;i<220;i++)P.push({x:innerWidth/2,y:innerHeight/2.2,vx:(Math.random()-.5)*20,vy:Math.random()*-18-4,s:Math.random()*8+4,c:COLS[i%5],r:Math.random()*6,vr:(Math.random()-.5)*.4});
+  let f=0;(function go(){cx.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.vx*=.99;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore()});
+    if(++f<170)requestAnimationFrame(go);else cx.clearRect(0,0,cv.width,cv.height)})();
+}
+/* floating emojis */
+setInterval(()=>{const e=document.createElement('div');e.className='fl';e.textContent=['🪘','💃','🕺','🪔','✨','🎶','🌺'][Math.random()*7|0];
+  e.style.left=Math.random()*100+'vw';e.style.animationDuration=(9+Math.random()*8)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),18000)},1800);
+/* scroll reveal + 3D tilt */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('.tix').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transition='none';c.style.transform=`perspective(700px) rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-6px)`});
+  c.addEventListener('mouseleave',()=>{c.style.transition='.5s';c.style.transform=''});
+});
+/* dhol beat (WebAudio, no files needed) */
+let ac,beatT=null,bi=0;
+function hitD(){const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(160,ac.currentTime);o.frequency.exponentialRampToValueAtTime(55,ac.currentTime+.18);g.gain.setValueAtTime(.8,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.25);o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+.26)}
+function hitT(){const n=ac.createBuffer(1,ac.sampleRate*.08,ac.sampleRate),d=n.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);const s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();f.type='highpass';f.frequency.value=2200;g.gain.value=.35;s.buffer=n;s.connect(f).connect(g).connect(ac.destination);s.start()}
+$('beatFab').onclick=()=>{
+  const b=$('beatFab');
+  if(beatT){clearInterval(beatT);beatT=null;b.classList.remove('on');return}
+  ac=ac||new (window.AudioContext||window.webkitAudioContext)();b.classList.add('on');
+  const pat=['D','t','t','D','t','D','t','t'];
+  beatT=setInterval(()=>{const p=pat[bi++%8];p==='D'?hitD():hitT()},215);
+};
+
+/* ================= STORAGE ================= */
+const mem={};
+async function sset(key,val){try{if(window.storage)await window.storage.set(key,JSON.stringify(val),true)}catch(e){}}
+async function sget(key){try{if(window.storage){const r=await window.storage.get(key,true);if(r&&r.value)return JSON.parse(r.value)}}catch(e){}return null}
+async function saveTicket(tk){mem['ticket:'+tk.id]=tk;await sset('ticket:'+tk.id,tk)}
+async function loadTicket(id){return (await sget('ticket:'+id))||mem['ticket:'+id]||null}
+async function utrUsed(u){return !!(mem['utr:'+u]||await sget('utr:'+u))}
+async function saveUtr(u,b){mem['utr:'+u]=b;await sset('utr:'+u,b)}
+async function allTickets(){
+  const out={};Object.keys(mem).filter(k=>k.startsWith('ticket:')).forEach(k=>out[mem[k].id]=mem[k]);
+  try{if(window.storage){const r=await window.storage.list('ticket:',true);for(const k of (r&&r.keys)||[]){const o=await sget(k);if(o)out[o.id]=o}}}catch(e){}
+  return Object.values(out);
+}
+const ALPHA='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+function genId(){const a=new Uint32Array(8);crypto.getRandomValues(a);let s='';a.forEach(n=>s+=ALPHA[n%ALPHA.length]);const id='GRB26-'+s;return mem['ticket:'+id]?genId():id}
+const bookingId=()=>{const a=new Uint32Array(3);crypto.getRandomValues(a);return 'BK'+[...a].map(n=>n.toString(36).toUpperCase()).join('').slice(0,8)};
+
+/* ================= WHATSAPP MESSAGES ================= */
+const statusLine=s=>s==='paid'?'✅ PAYMENT VERIFIED — VALID ENTRY':s==='rejected'?'❌ PAYMENT REJECTED':'⏳ PAYMENT VERIFICATION PENDING';
+function eventDateText(){return new Date(CONFIG.eventDate).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}
+function ticketsMsg(list){
+  const f=list[0],total=list.reduce((a,x)=>a+x.price,0);
+  const ids=list.map(x=>`🎟️ *${x.id}*  (${x.seq})`).join('\n');
+  return `🎉 *${CONFIG.eventName.toUpperCase()}* 🎉\n━━━━━━━━━━━━━━━\n${ids}\n━━━━━━━━━━━━━━━\n👤 *Name:* ${f.name}\n📱 *Mobile:* +91 ${f.phone}\n🎫 *Pass:* ${f.type.toUpperCase()} × ${list.length}  (${TYPES[f.type].persons*list.length} person${TYPES[f.type].persons*list.length>1?'s':''})\n💰 *Amount:* ₹${total}\n🧾 *UTR:* ${f.utr}\n📌 *Status:* ${statusLine(f.status)}\n━━━━━━━━━━━━━━━\n📅 *Date:* ${eventDateText()}\n⏰ *Time:* 6:00 PM onwards\n📍 *Venue:* ${CONFIG.venue}\n☎️ *Helpline:* +${CONFIG.ownerPhone}\n━━━━━━━━━━━━━━━\nShow this Ticket ID + valid photo ID at the gate. Each ticket is valid for ONE entry.\nटिकट आईडी और फोटो ID गेट पर दिखाएं। हर टिकट एक बार मान्य है।\n\n🪔 See you at the Garba! 💃🕺`;
+}
+function proofMsg(list){return '🆕 *NEW BOOKING — please verify payment*\n\n'+ticketsMsg(list)}
+const waTo=(phone,txt)=>'https://wa.me/91'+phone+'?text='+encodeURIComponent(txt);
+
+/* ================= BOOKING FLOW ================= */
+const cur={type:null,qty:1,tickets:[],buyer:null};
+function setStep(n){
+  ['st1','st2','st3'].forEach(s=>$(s).style.display='none');
+  $('st'+n).style.display='block';
+  [...$('steps').children].forEach((el,i)=>el.classList.toggle('on',i<n));
+}
+function refreshBook(){
+  const ty=TYPES[cur.type];
+  $('mTitle').textContent=ty.icon+' '+t('mTitle')+' · '+t(cur.type);
+  $('qv').textContent=cur.qty;
+  $('sType').textContent=t(cur.type)+' × '+cur.qty;
+  $('sPer').textContent=money(ty.price)+' / '+(lang==='en'?'ticket':'टिकट');
+  $('sTot').textContent=money(ty.price*cur.qty);
+}
+function openBook(type){
+  cur.type=type;cur.qty=1;['e1','e2'].forEach(i=>$(i).textContent='');
+  setStep(1);refreshBook();$('ov').classList.add('on');document.body.style.overflow='hidden';
+}
+function closeBook(){$('ov').classList.remove('on');document.body.style.overflow=''}
+$('qm').onclick=()=>{if(cur.qty>1){cur.qty--;refreshBook()}};
+$('qp').onclick=()=>{if(cur.qty<CONFIG.maxQty){cur.qty++;refreshBook()}};
+$('fPhone').addEventListener('input',e=>e.target.value=e.target.value.replace(/\D/g,''));
+
+$('to2').onclick=()=>{
+  const n=$('fName').value.trim(),em=$('fEmail').value.trim(),ph=$('fPhone').value.trim();
+  if(n.length<2) return $('e1').textContent=t('eName');
+  if(!/^[6-9]\d{9}$/.test(ph)) return $('e1').textContent=t('ePhone');
+  if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) return $('e1').textContent=t('eEmail');
+  $('e1').textContent='';cur.buyer={name:n,email:em,phone:ph};
+  const amt=TYPES[cur.type].price*cur.qty;
+  $('pAmt').textContent=money(amt);$('fUtr').value='';$('e2').textContent='';
+  const hasUpi=!!CONFIG.upiId;
+  $('upiArea').style.display=hasUpi?'block':'none';$('noUpi').style.display=hasUpi?'none':'block';
+  if(hasUpi){
+    const link=`upi://pay?pa=${CONFIG.upiId}&pn=${encodeURIComponent(CONFIG.ownerName)}&am=${amt}&cu=INR&tn=${encodeURIComponent('Garba2026 '+n)}`;
+    $('upiTxt').textContent=CONFIG.upiId;$('upiBtn').href=link;
+    $('upiQr').innerHTML='';new QRCode($('upiQr'),{text:link,width:170,height:170,colorDark:'#2b0a3d',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+  }
+  setStep(2);
+};
+$('back1').onclick=()=>setStep(1);
+document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText($(b.dataset.copy).textContent);toast('✔ Copied')}catch(e){}});
+
+$('payDone').onclick=async()=>{
+  const utr=$('fUtr').value.trim().toUpperCase();
+  if(!/^[A-Z0-9]{10,25}$/.test(utr)) return $('e2').textContent=t('eUtr');
+  if(await utrUsed(utr)) return $('e2').textContent=t('eDup');
+  $('e2').textContent='';
+  const ty=TYPES[cur.type],bid=bookingId(),now=new Date().toISOString();
+  cur.tickets=[];
+  for(let i=0;i<cur.qty;i++){
+    const tk={id:genId(),bid,type:cur.type,price:ty.price,name:cur.buyer.name,email:cur.buyer.email,phone:cur.buyer.phone,
+      utr,status:'pending',used:false,createdAt:now,seq:(i+1)+'/'+cur.qty};
+    await saveTicket(tk);cur.tickets.push(tk);
+  }
+  await saveUtr(utr,bid);
+  renderTickets();setStep(3);confetti();
+  $('waProof').href=waOwner(proofMsg(cur.tickets));
+  $('waSelf').href='https://wa.me/91'+cur.buyer.phone+'?text='+encodeURIComponent(ticketsMsg(cur.tickets));
+};
+
+function renderTickets(){
+  const box=$('tkList');box.innerHTML='';
+  cur.tickets.forEach(tk=>{
+    const d=document.createElement('div');d.className='tk';
+    d.innerHTML=`<div class="l"><h4>🪔 ${CONFIG.eventName}</h4><span class="tid">${tk.id}</span><br><span class="bdg ${tk.status}">${t(tk.status==='paid'?'paid':tk.status)}</span>
+      <p><b>${t('name')}:</b> ${esc(tk.name)}<br><b>${t('ph')}:</b> +91 ${tk.phone}<br><b>${t('passFor')}:</b> ${t(tk.type)} · ${TYPES[tk.type].persons} ${t('persons')} (${tk.seq})<br>
+      <b>${t('dt')}:</b> ${eventDateText()} · 6 PM<br><b>${t('ven')}:</b> ${CONFIG.venue}<br><b>${money(tk.price)}</b> · UTR …${tk.utr.slice(-4)}</p></div>
+      <div class="r"><div class="qr"></div><small>${t('admit')} ${TYPES[tk.type].persons}</small></div>`;
+    box.appendChild(d);
+    new QRCode(d.querySelector('.qr'),{text:tk.id,width:110,height:110,colorDark:'#2b0a3d',colorLight:'#fff7e8',correctLevel:QRCode.CorrectLevel.M});
+  });
+}
+
+/* download PNG */
+$('dlAll').onclick=()=>{cur.tickets.forEach((tk,i)=>setTimeout(()=>drawTicket(tk,i),i*350));toast('✔ Download started')};
+function drawTicket(tk,idx){
+  const cv=document.createElement('canvas');cv.width=1000;cv.height=440;const c=cv.getContext('2d');
+  const g=c.createLinearGradient(0,0,1000,440);g.addColorStop(0,'#2b0a3d');g.addColorStop(.55,'#7a1666');g.addColorStop(1,'#ff9933');
+  c.fillStyle=g;c.fillRect(0,0,1000,440);
+  c.fillStyle='#fff7e8';rr(c,20,20,960,400,26);c.fill();
+  c.fillStyle='#ffe3b8';c.fillRect(700,20,280,400);
+  c.strokeStyle='#b46a1b';c.setLineDash([10,8]);c.lineWidth=3;c.beginPath();c.moveTo(700,30);c.lineTo(700,410);c.stroke();c.setLineDash([]);
+  c.fillStyle='#a2005c';c.font='bold 36px Segoe UI, sans-serif';c.fillText('GARBA RAAS NIGHT 2026',50,85);
+  c.fillStyle='#2b0a3d';c.font='bold 26px monospace';c.fillText(tk.id,50,128);
+  const st=tk.status==='paid'?'PAID':tk.status==='rejected'?'REJECTED':'PENDING VERIFICATION';
+  c.fillStyle=tk.status==='paid'?'#0f9d7a':'#ff9933';rr(c,50,142,tk.status==='paid'?90:260,30,15);c.fill();
+  c.fillStyle='#fff';c.font='bold 16px Segoe UI, sans-serif';c.fillText(st,66,163);
+  const rows=[['Name',tk.name],['Mobile','+91 '+tk.phone],['Pass',tk.type.toUpperCase()+' ('+tk.seq+') · '+TYPES[tk.type].persons+' person(s)'],['Date',eventDateText()+', 6 PM'],['Venue',CONFIG.venue],['Amount','Rs. '+tk.price+'   UTR: '+tk.utr],['Helpline','+'+CONFIG.ownerPhone]];
+  rows.forEach((r,i)=>{c.fillStyle='#a2005c';c.font='bold 19px Segoe UI, sans-serif';c.fillText(r[0]+':',50,205+i*33);c.fillStyle='#2b0a3d';c.font='19px Segoe UI, sans-serif';c.fillText(String(r[1]).slice(0,52),150,205+i*33)});
+  const qc=document.querySelectorAll('#tkList .tk')[idx]?.querySelector('canvas');
+  if(qc){c.fillStyle='#fff';c.fillRect(740,70,200,200);c.drawImage(qc,750,80,180,180)}
+  c.fillStyle='#2b0a3d';c.font='bold 22px Segoe UI, sans-serif';c.textAlign='center';c.fillText('ADMIT '+TYPES[tk.type].persons,840,312);
+  c.font='15px Segoe UI, sans-serif';c.fillText('Single entry · Carry photo ID',840,342);c.textAlign='left';
+  const a=document.createElement('a');a.download=tk.id+'.png';a.href=cv.toDataURL('image/png');a.click();
+}
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+
+/* email (optional) */
+$('mailBtn').onclick=async()=>{
+  const msg=$('mailMsg'),em=cur.buyer.email||'',body=ticketsMsg(cur.tickets).replace(/\*/g,'');
+  const c=CONFIG.emailjs;
+  if(c.serviceId&&c.templateId&&c.publicKey&&em){
+    try{const r=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({service_id:c.serviceId,template_id:c.templateId,user_id:c.publicKey,template_params:{to_name:cur.buyer.name,to_email:em,message:body}})});
+      if(r.ok){msg.textContent=t('mailSent')+em;return}}catch(e){}
+  }
+  location.href='mailto:'+encodeURIComponent(em)+'?subject='+encodeURIComponent('Your Tickets - '+CONFIG.eventName)+'&body='+encodeURIComponent(body);
+  msg.textContent=t('mailOpen');
+};
+
+/* ================= VERIFY (gate) ================= */
+$('vbtn').onclick=async()=>{
+  const id=$('vid').value.trim().toUpperCase(),box=$('vres');if(!id)return;
+  const tk=await loadTicket(id);box.className='vres';
+  if(!tk){box.className='vres bad';box.innerHTML=t('vBad');return}
+  const info=`<br><b>${esc(tk.name)}</b> · ${t(tk.type)} (${tk.seq}) · ${TYPES[tk.type].persons} ${t('persons')}<br>${tk.id}`;
+  if(tk.status==='rejected'){box.className='vres bad';box.innerHTML=t('vRej')+info;return}
+  if(tk.status!=='paid'){box.className='vres used';box.innerHTML=t('vPend')+info;return}
+  if(tk.used){box.className='vres used';box.innerHTML=t('vUsed')+info;return}
+  box.className='vres ok';box.innerHTML=t('vOk')+info+`<br><br><button class="btn alt sm" id="markBtn">${t('vMark')}</button>`;
+  $('markBtn').onclick=async()=>{tk.used=true;await saveTicket(tk);$('vbtn').click()};
+};
+$('vid').addEventListener('keydown',e=>{if(e.key==='Enter')$('vbtn').click()});
+
+/* ================= ORGANIZER PANEL ================= */
+let adminOk=false;
+$('pinBtn').onclick=()=>{
+  if($('pin').value===CONFIG.adminPin){adminOk=true;$('pinBox').style.display='none';$('pinErr').textContent='';$('admPanel').style.display='block';renderAdmin()}
+  else $('pinErr').textContent=t('pinBad');
+};
+$('pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('pinBtn').click()});
+$('refBtn').onclick=()=>renderAdmin();
+async function renderAdmin(){
+  const all=await allTickets(),groups={};
+  all.forEach(x=>{(groups[x.bid]=groups[x.bid]||[]).push(x)});
+  const bks=Object.values(groups).sort((a,b)=>b[0].createdAt.localeCompare(a[0].createdAt));
+  const pend=all.filter(x=>x.status==='pending').length,ver=all.filter(x=>x.status==='paid');
+  $('stats').innerHTML=`<div><b>${all.length}</b>${t('stT')}</div><div><b>${pend}</b>${t('stP')}</div><div><b>${ver.length}</b>${t('stV')}</div><div><b>${money(ver.reduce((a,x)=>a+x.price,0))}</b>${t('stR')}</div>`;
+  const list=$('bkList');list.innerHTML=bks.length?'':`<p style="text-align:center;color:var(--muted)">${t('noBk')}</p>`;
+  bks.forEach(b=>{
+    const f=b[0],tot=b.reduce((a,x)=>a+x.price,0),el=document.createElement('div');el.className='bk';
+    el.innerHTML=`<div class="top"><div><b>${esc(f.name)}</b> · +91 ${f.phone}<br><small>${t(f.type)} × ${b.length} · ${money(tot)} · ${t('utr')}: ${esc(f.utr)}</small><br><small>${b.map(x=>x.id).join(', ')}</small></div><span class="st ${f.status}">${t(f.status==='paid'?'paid':f.status)}</span></div>
+      <div class="acts"><button class="btn sm" data-a="v">${t('vfy')}</button><button class="btn red sm" data-a="r">${t('rej')}</button><a class="btn wa sm" target="_blank" rel="noopener" data-a="w">${t('waCust')}</a></div>`;
+    const setAll=async s=>{for(const x of b){x.status=s;await saveTicket(x)}renderAdmin()};
+    el.querySelector('[data-a=v]').onclick=()=>setAll('paid');
+    el.querySelector('[data-a=r]').onclick=()=>setAll('rejected');
+    const w=el.querySelector('[data-a=w]');w.href=waTo(f.phone,ticketsMsg(b));
+    list.appendChild(el);
+  });
+}
+
+/* ================= UTIL ================= */
+function toast(m){const e=$('toast');e.textContent=m;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2200)}
+$('ov').addEventListener('click',e=>{if(e.target===$('ov')&&$('st3').style.display!=='block')closeBook()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeBook()});
+
+applyLang();
+</script>
+</body>
+</html>
