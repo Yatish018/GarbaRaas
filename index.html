@@ -772,7 +772,6 @@ function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);
 $('mailBtn').onclick=async()=>{
   const msg=$('mailMsg'),em=cur.buyer.email||'',body=ticketsMsg(cur.tickets).replace(/\*/g,'');
   const c=CONFIG.emailjs;
-  firebase  : { projectId:'', apiKey:'' },
   if(c.serviceId&&c.templateId&&c.publicKey&&em){
     try{const r=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({service_id:c.serviceId,template_id:c.templateId,user_id:c.publicKey,template_params:{to_name:cur.buyer.name,to_email:em,message:body}})});
