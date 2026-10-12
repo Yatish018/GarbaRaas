@@ -413,6 +413,7 @@ const CONFIG = {
   upiId     : '7023013549@ptaxis',                               // PUT YOUR REAL UPI ID HERE, e.g. 'yourname@oksbi'. Copy it from PhonePe/GPay/Paytm
   adminPin  : '2026',                           // change this! (client-side PIN is only basic protection)
   emailjs   : { serviceId:'', templateId:'', publicKey:'' },
+  firebase  : { projectId:'YOUR_PROJECT_ID', apiKey:'YOUR_WEB_API_KEY' }
   maxQty    : 10
 };
 const TYPES={couples:{price:500,icon:'👫',persons:2},singles:{price:300,icon:'🕺',persons:1},kids:{price:200,icon:'🧒',persons:1}};
@@ -630,34 +631,19 @@ async function sset(key,val){try{if(window.storage)await window.storage.set(key,
 async function sget(key){try{if(window.storage){const r=await window.storage.get(key,true);if(r&&r.value)return JSON.parse(r.value)}}catch(e){}return null}
 
 /* --- Same function names as before, so the rest of the site is unchanged --- */
+const pendingSync=()=>LS.get('unsynced')||[];
+function markUnsynced(id,on){
+  const a=pendingSync().filter(x=>x!==id);
+  if(on)a.push(id);
+  LS.set('unsynced',a);
+}
 async function saveTicket(tk){
   mem['ticket:'+tk.id]=tk;LS.set('ticket:'+tk.id,tk);await sset('ticket:'+tk.id,tk);
-  if(useFB){try{await fbSet('tickets',tk.id,tk)}catch(e){toast('⚠ Cloud save failed - check Firebase settings')}}
+  if(useFB){
+    try{await fbSet('tickets',tk.id,tk);markUnsynced(tk.id,false)}
+    catch(e){markUnsynced(tk.id,true);toast('⚠ Saved on this device only - will retry online')}
+  }
 }
-async function loadTicket(id){
-  if(useFB){try{const v=await fbGet('tickets',id);if(v)return v}catch(e){}}
-  return LS.get('ticket:'+id)||(await sget('ticket:'+id))||mem['ticket:'+id]||null;
-}
-async function utrUsed(u){
-  if(useFB){try{if(await fbGet('utrs',u))return true}catch(e){}}
-  return !!(mem['utr:'+u]||LS.get('utr:'+u)||await sget('utr:'+u));
-}
-async function saveUtr(u,b){
-  mem['utr:'+u]=b;LS.set('utr:'+u,b);await sset('utr:'+u,b);
-  if(useFB){try{await fbSet('utrs',u,b)}catch(e){}}
-}
-async function allTickets(){
-  const out={};
-  Object.keys(mem).filter(k=>k.startsWith('ticket:')).forEach(k=>out[mem[k].id]=mem[k]);
-  LS.keys('ticket:').forEach(k=>{const o=LS.get(k);if(o)out[o.id]=o});
-  try{if(window.storage){const r=await window.storage.list('ticket:',true);for(const k of (r&&r.keys)||[]){const o=await sget(k);if(o)out[o.id]=o}}}catch(e){}
-  if(useFB){try{(await fbList('tickets')).forEach(o=>out[o.id]=o)}catch(e){}}
-  return Object.values(out);
-}
-const ALPHA='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
-function genId(){const a=new Uint32Array(8);crypto.getRandomValues(a);let s='';a.forEach(n=>s+=ALPHA[n%ALPHA.length]);const id='GRB26-'+s;return mem['ticket:'+id]?genId():id}
-const bookingId=()=>{const a=new Uint32Array(3);crypto.getRandomValues(a);return 'BK'+[...a].map(n=>n.toString(36).toUpperCase()).join('').slice(0,8)};
-
 /* ================= WHATSAPP MESSAGES ================= */
 const statusLine=s=>s==='paid'?'✅ PAYMENT VERIFIED — VALID ENTRY':s==='rejected'?'❌ PAYMENT REJECTED':'⏳ PAYMENT VERIFICATION PENDING';
 function eventDateText(){return new Date(CONFIG.eventDate).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}
@@ -714,22 +700,28 @@ $('back1').onclick=()=>setStep(1);
 document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText($(b.dataset.copy).textContent);toast('✔ Copied')}catch(e){}});
 
 $('payDone').onclick=async()=>{
+  const btn=$('payDone');
+  if(btn.disabled)return;
   const utr=$('fUtr').value.trim().toUpperCase();
   if(!/^[A-Z0-9]{10,25}$/.test(utr)) return $('e2').textContent=t('eUtr');
-  if(await utrUsed(utr)) return $('e2').textContent=t('eDup');
-  $('e2').textContent='';
-  const ty=TYPES[cur.type],bid=bookingId(),now=new Date().toISOString();
-  cur.tickets=[];
-  for(let i=0;i<cur.qty;i++){
-    const tk={id:genId(),bid,type:cur.type,price:ty.price,name:cur.buyer.name,email:cur.buyer.email,phone:cur.buyer.phone,
-      utr,status:'pending',used:false,createdAt:now,seq:(i+1)+'/'+cur.qty};
-    await saveTicket(tk);cur.tickets.push(tk);
-  }
-  await saveUtr(utr,bid);
-  renderTickets();setStep(3);confetti();
-  $('waProof').href=waOwner(proofMsg(cur.tickets));
-  $('waSelf').href='https://wa.me/91'+cur.buyer.phone+'?text='+encodeURIComponent(ticketsMsg(cur.tickets));
+  btn.disabled=true;
+  try{
+    if(await utrUsed(utr)){$('e2').textContent=t('eDup');return}
+    $('e2').textContent='';
+    const ty=TYPES[cur.type],bid=bookingId(),now=new Date().toISOString();
+    cur.tickets=[];
+    for(let i=0;i<cur.qty;i++){
+      const tk={id:genId(),bid,type:cur.type,price:ty.price,name:cur.buyer.name,email:cur.buyer.email,phone:cur.buyer.phone,
+        utr,status:'pending',used:false,createdAt:now,seq:(i+1)+'/'+cur.qty};
+      await saveTicket(tk);cur.tickets.push(tk);
+    }
+    await saveUtr(utr,bid);
+    renderTickets();setStep(3);confetti();
+    $('waProof').href=waOwner(proofMsg(cur.tickets));
+    $('waSelf').href='https://wa.me/91'+cur.buyer.phone+'?text='+encodeURIComponent(ticketsMsg(cur.tickets));
+  }finally{btn.disabled=false}
 };
+
 
 function renderTickets(){
   const box=$('tkList');box.innerHTML='';
@@ -804,6 +796,7 @@ $('pinBtn').onclick=()=>{
 $('pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('pinBtn').click()});
 $('refBtn').onclick=()=>renderAdmin();
 async function renderAdmin(){
+  showCloudStatus();
   const all=await allTickets(),groups={};
   all.forEach(x=>{(groups[x.bid]=groups[x.bid]||[]).push(x)});
   const bks=Object.values(groups).sort((a,b)=>b[0].createdAt.localeCompare(a[0].createdAt));
@@ -827,6 +820,37 @@ function toast(m){const e=$('toast');e.textContent=m;e.classList.add('on');setTi
 $('ov').addEventListener('click',e=>{if(e.target===$('ov')&&$('st3').style.display!=='block')closeBook()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeBook()});
 
+  
+/* ===== CLOUD STATUS + AUTO-RETRY ===== */
+async function fbPing(){
+  if(!useFB)return {ok:false,msg:'⚠ Cloud NOT configured. Add firebase projectId + apiKey in CONFIG. Bookings are saved on this device only.'};
+  try{
+    const r=await fetch(fbDoc('tickets')+'?pageSize=1&key='+FB.apiKey);
+    if(r.ok)return {ok:true,msg:'✅ Cloud database connected - bookings sync across all devices.'};
+    const why={400:'API key looks wrong.',403:'Firestore rules are blocking access (allow read, write in Rules tab).',404:'Project ID is wrong, or the Firestore database was not created.'}[r.status]||'Unexpected error.';
+    return {ok:false,msg:'❌ Cloud error '+r.status+': '+why};
+  }catch(e){return {ok:false,msg:'❌ Cannot reach Firebase - check the internet connection.'}}
+}
+async function showCloudStatus(){
+  let el=$('cloudStat');
+  if(!el){
+    el=document.createElement('div');el.id='cloudStat';el.className='warn';el.style.textAlign='center';
+    $('admPanel').insertBefore(el,$('admPanel').firstChild);
+  }
+  const s=await fbPing();
+  el.textContent=s.msg;
+  el.style.borderColor=s.ok?'var(--teal)':'var(--magenta)';
+}
+async function retryUnsynced(){
+  if(!useFB)return;
+  for(const id of pendingSync()){
+    const tk=LS.get('ticket:'+id);
+    if(!tk){markUnsynced(id,false);continue}
+    try{await fbSet('tickets',id,tk);markUnsynced(id,false)}catch(e){}
+  }
+}
+retryUnsynced();setInterval(retryUnsynced,20000);
+  
 applyLang();
 </script>
 </body>
