@@ -413,7 +413,7 @@ const CONFIG = {
   upiId     : '7023013549@ptaxis',                               // PUT YOUR REAL UPI ID HERE, e.g. 'yourname@oksbi'. Copy it from PhonePe/GPay/Paytm
   adminPin  : '2026',                           // change this! (client-side PIN is only basic protection)
   emailjs   : { serviceId:'', templateId:'', publicKey:'' },
-  firebase  : { projectId: garbarass-5022e, apiKey:AIzaSyCWkUq_Xis18FDVCTsF_o4EF1zkddgreFs }
+  firebase  : { projectId:'garbarass-5022e', apiKey:'AIzaSyCWkUq_Xis18FDVCTsF_o4EF1zkddgreFs' },
   maxQty    : 10
 };
 const TYPES={couples:{price:500,icon:'👫',persons:2},singles:{price:300,icon:'🕺',persons:1},kids:{price:200,icon:'🧒',persons:1}};
@@ -644,6 +644,30 @@ async function saveTicket(tk){
     catch(e){markUnsynced(tk.id,true);toast('⚠ Saved on this device only - will retry online')}
   }
 }
+  async function loadTicket(id){
+  if(useFB){try{const v=await fbGet('tickets',id);if(v)return v}catch(e){}}
+  return LS.get('ticket:'+id)||(await sget('ticket:'+id))||mem['ticket:'+id]||null;
+}
+async function utrUsed(u){
+  if(useFB){try{if(await fbGet('utrs',u))return true}catch(e){}}
+  return !!(mem['utr:'+u]||LS.get('utr:'+u)||await sget('utr:'+u));
+}
+async function saveUtr(u,b){
+  mem['utr:'+u]=b;LS.set('utr:'+u,b);await sset('utr:'+u,b);
+  if(useFB){try{await fbSet('utrs',u,b)}catch(e){}}
+}
+async function allTickets(){
+  const out={};
+  Object.keys(mem).filter(k=>k.startsWith('ticket:')).forEach(k=>out[mem[k].id]=mem[k]);
+  LS.keys('ticket:').forEach(k=>{const o=LS.get(k);if(o)out[o.id]=o});
+  try{if(window.storage){const r=await window.storage.list('ticket:',true);for(const k of (r&&r.keys)||[]){const o=await sget(k);if(o)out[o.id]=o}}}catch(e){}
+  if(useFB){try{(await fbList('tickets')).forEach(o=>out[o.id]=o)}catch(e){}}
+  return Object.values(out);
+}
+const ALPHA='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+function genId(){const a=new Uint32Array(8);crypto.getRandomValues(a);let s='';a.forEach(n=>s+=ALPHA[n%ALPHA.length]);const id='GRB26-'+s;return mem['ticket:'+id]?genId():id}
+const bookingId=()=>{const a=new Uint32Array(3);crypto.getRandomValues(a);return 'BK'+[...a].map(n=>n.toString(36).toUpperCase()).join('').slice(0,8)};
+  
 /* ================= WHATSAPP MESSAGES ================= */
 const statusLine=s=>s==='paid'?'✅ PAYMENT VERIFIED — VALID ENTRY':s==='rejected'?'❌ PAYMENT REJECTED':'⏳ PAYMENT VERIFICATION PENDING';
 function eventDateText(){return new Date(CONFIG.eventDate).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}
