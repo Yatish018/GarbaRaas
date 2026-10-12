@@ -588,17 +588,70 @@ $('beatFab').onclick=()=>{
   beatT=setInterval(()=>{const p=pat[bi++%8];p==='D'?hitD():hitT()},215);
 };
 
-/* ================= STORAGE ================= */
+/* ================= STORAGE (persistent) ================= */
 const mem={};
+const FB=CONFIG.firebase||{};
+const useFB=!!(FB.projectId&&FB.apiKey);
+
+/* --- Firebase Firestore via REST (no library needed) --- */
+const fbDoc=(col,id)=>`https://firestore.googleapis.com/v1/projects/${FB.projectId}/databases/(default)/documents/${col}${id?'/'+encodeURIComponent(id):''}`;
+async function fbSet(col,id,val){
+  const r=await fetch(fbDoc(col,id)+'?key='+FB.apiKey,{method:'PATCH',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({fields:{data:{stringValue:JSON.stringify(val)}}})});
+  if(!r.ok)throw new Error('firebase write failed');
+}
+async function fbGet(col,id){
+  const r=await fetch(fbDoc(col,id)+'?key='+FB.apiKey);
+  if(!r.ok)return null;
+  const d=await r.json();
+  return d.fields&&d.fields.data?JSON.parse(d.fields.data.stringValue):null;
+}
+async function fbList(col){
+  let out=[],tok='';
+  do{
+    const r=await fetch(fbDoc(col)+'?pageSize=300&key='+FB.apiKey+(tok?'&pageToken='+tok:''));
+    if(!r.ok)break;
+    const d=await r.json();
+    (d.documents||[]).forEach(x=>{try{out.push(JSON.parse(x.fields.data.stringValue))}catch(e){}});
+    tok=d.nextPageToken||'';
+  }while(tok);
+  return out;
+}
+
+/* --- Browser storage: survives refresh / restart on the same device --- */
+const LS={
+  get(k){try{const v=localStorage.getItem('garba26:'+k);return v?JSON.parse(v):null}catch(e){return null}},
+  set(k,v){try{localStorage.setItem('garba26:'+k,JSON.stringify(v))}catch(e){}},
+  keys(p){try{return Object.keys(localStorage).filter(k=>k.startsWith('garba26:'+p)).map(k=>k.slice(8))}catch(e){return []}}
+};
+
+/* --- Claude-preview storage (kept only for compatibility) --- */
 async function sset(key,val){try{if(window.storage)await window.storage.set(key,JSON.stringify(val),true)}catch(e){}}
 async function sget(key){try{if(window.storage){const r=await window.storage.get(key,true);if(r&&r.value)return JSON.parse(r.value)}}catch(e){}return null}
-async function saveTicket(tk){mem['ticket:'+tk.id]=tk;await sset('ticket:'+tk.id,tk)}
-async function loadTicket(id){return (await sget('ticket:'+id))||mem['ticket:'+id]||null}
-async function utrUsed(u){return !!(mem['utr:'+u]||await sget('utr:'+u))}
-async function saveUtr(u,b){mem['utr:'+u]=b;await sset('utr:'+u,b)}
+
+/* --- Same function names as before, so the rest of the site is unchanged --- */
+async function saveTicket(tk){
+  mem['ticket:'+tk.id]=tk;LS.set('ticket:'+tk.id,tk);await sset('ticket:'+tk.id,tk);
+  if(useFB){try{await fbSet('tickets',tk.id,tk)}catch(e){toast('⚠ Cloud save failed - check Firebase settings')}}
+}
+async function loadTicket(id){
+  if(useFB){try{const v=await fbGet('tickets',id);if(v)return v}catch(e){}}
+  return LS.get('ticket:'+id)||(await sget('ticket:'+id))||mem['ticket:'+id]||null;
+}
+async function utrUsed(u){
+  if(useFB){try{if(await fbGet('utrs',u))return true}catch(e){}}
+  return !!(mem['utr:'+u]||LS.get('utr:'+u)||await sget('utr:'+u));
+}
+async function saveUtr(u,b){
+  mem['utr:'+u]=b;LS.set('utr:'+u,b);await sset('utr:'+u,b);
+  if(useFB){try{await fbSet('utrs',u,b)}catch(e){}}
+}
 async function allTickets(){
-  const out={};Object.keys(mem).filter(k=>k.startsWith('ticket:')).forEach(k=>out[mem[k].id]=mem[k]);
+  const out={};
+  Object.keys(mem).filter(k=>k.startsWith('ticket:')).forEach(k=>out[mem[k].id]=mem[k]);
+  LS.keys('ticket:').forEach(k=>{const o=LS.get(k);if(o)out[o.id]=o});
   try{if(window.storage){const r=await window.storage.list('ticket:',true);for(const k of (r&&r.keys)||[]){const o=await sget(k);if(o)out[o.id]=o}}}catch(e){}
+  if(useFB){try{(await fbList('tickets')).forEach(o=>out[o.id]=o)}catch(e){}}
   return Object.values(out);
 }
 const ALPHA='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
@@ -719,6 +772,7 @@ function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);
 $('mailBtn').onclick=async()=>{
   const msg=$('mailMsg'),em=cur.buyer.email||'',body=ticketsMsg(cur.tickets).replace(/\*/g,'');
   const c=CONFIG.emailjs;
+  firebase  : { projectId:'', apiKey:'' },
   if(c.serviceId&&c.templateId&&c.publicKey&&em){
     try{const r=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({service_id:c.serviceId,template_id:c.templateId,user_id:c.publicKey,template_params:{to_name:cur.buyer.name,to_email:em,message:body}})});
